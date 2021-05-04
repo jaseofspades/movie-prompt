@@ -1,4 +1,6 @@
-import React from 'react';
+type MovieName = {
+    title: string,
+}
 
 const Movie = () => {
 

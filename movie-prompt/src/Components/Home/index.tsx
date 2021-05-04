@@ -1,5 +1,6 @@
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
+
+import Movie from '../../Components/Movie';
 
 const Home = () => {
 
@@ -16,7 +17,7 @@ const Home = () => {
             </div>
 
             <Switch>
-                <Route path='/:movieName' children={<Child />} />
+                <Route path='/:movieName' children={<HandleMovieTitle />} />
             </Switch>
         </Router>
     );
@@ -24,13 +25,17 @@ const Home = () => {
 
 export default Home;
 
-type ParamsType = {
+type MovieParameter = {
     movieName: string;
 }
-function Child() {
-    let {movieName} = useParams<ParamsType>();
+
+function HandleMovieTitle() {
+    let {movieName} = useParams<MovieParameter>();
 
     return (
-        <div><h3>{`movie name passed in: ` + movieName}</h3></div>
+        <div>
+            <h3>{`DEBUG: movie name passed in - ` + movieName}</h3>
+            <Movie />
+        </div>
     )
 }
