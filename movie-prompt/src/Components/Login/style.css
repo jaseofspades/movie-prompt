@@ -1,0 +1,20 @@
+h1 {
+    display: inline-block;
+}
+
+button {
+    border: none;
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: green;
+}
+
+button:hover {
+    background:forestgreen;
+}
+
+button:focus {
+    background:darkred;
+}
