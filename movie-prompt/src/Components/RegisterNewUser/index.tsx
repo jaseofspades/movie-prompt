@@ -1,11 +1,13 @@
 import React from 'react';
 
+import './style.css';
+
 const RegisterNewUser = () => {
 
     return (
         <React.Fragment>
             <h1>This is the new user registration page</h1>
-            <form>
+            <form className='registrationForm'>
                 <div>
                     <label>First name:</label> <input placeholder="First name"></input>
  
@@ -17,8 +19,9 @@ const RegisterNewUser = () => {
  
                     <label>Confirm your password:</label><input placeholder="Confirm password"></input>
                 </div>
+                <button>Submit</button>
             </form>
-            <button>Submit</button>
+            
         </React.Fragment>
     );
 }

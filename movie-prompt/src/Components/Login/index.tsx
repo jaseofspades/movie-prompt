@@ -9,7 +9,7 @@ const Login = () => {
                 <input placeholder='Username' />
             </div>
             <div>
-                <input placeholder='Password' />
+                <input type='password' placeholder='Password' />
             </div>
             
             <Route>

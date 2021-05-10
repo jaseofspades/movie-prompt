@@ -1,4 +1,4 @@
-label {
+/* label {
     display: inline-block;
     float: left;
     text-align: left;
@@ -9,4 +9,22 @@ label {
 
 input {
     float: left;
+} */
+
+.registrationForm label {
+    display: inline-block;
+    float: left;
+    text-align: left;
+    width: 200px;
+    clear: left;
+    padding: 5px;
+}
+
+.registrationForm input {
+    float: left;
+}
+
+.registrationForm button {
+    border: none;
+    color: green;
 }
