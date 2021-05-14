@@ -1,10 +1,17 @@
 import React, { useState, useRef } from 'react';
 import Movie from '../Movie';
+import Error from '../Error';
 
 export interface RatingInfo {
     Source: string; 
     Value: string;
 }
+
+export interface ErrorInfo {
+    Error: string;
+    Response: string;
+}
+
 export interface MovieInfo {
     Actors: string,
     Awards: string
@@ -28,28 +35,11 @@ export interface MovieInfo {
 
 const SearchMovie = () => {
 
-    const [ searchQuery, setSearchQuery ] = useState('');
+    // We use null here as a potential type to handle since we may not have
+    // a starting movie object and don't want to display anything until there is
+    const [ movie, setMovie ] = useState<MovieInfo | null>(null);
     
-    const [ movie, setMovie ] = useState({
-        Actors: "",
-        Awards: "",
-        BoxOffice: "",
-        Director: "",
-        Genre: "",
-        imdbID: "",
-        imdbRating: "",
-        Metascore: "",
-        Plot: "",
-        Poster: "",
-        Production: "",
-        Rated: "",
-        Ratings: [{Source: "", Value: ""}],
-        Released: "",
-        Runtime: "",
-        Title: "",
-        Writer:"",
-        Year: "",
-    });
+    const [ error, setError ] = useState("");
 
     /**
      * Think of variables with useRef() as a pointer to their variable that 
@@ -58,9 +48,9 @@ const SearchMovie = () => {
     const movieTitleInput = useRef<HTMLInputElement>(null);
     const movieYearInput = useRef<HTMLInputElement>(null);
 
-    let searchParameter = "";
-
     const getMovieData = () => {
+
+        let searchParameter = "";
 
         if ((movieTitleInput.current === null || movieTitleInput.current === undefined) ||  
             (movieYearInput.current === null || movieYearInput.current === undefined))
@@ -71,7 +61,6 @@ const SearchMovie = () => {
         // Build the movie title parameter for the API call
         if (movieTitleInput.current.value) {
             searchParameter += ("t=" + movieTitleInput.current.value.trim().split(' ').join('+'));
-            console.log(searchParameter);
         }
 
         // If there is a movie year parameter, add that too
@@ -79,15 +68,26 @@ const SearchMovie = () => {
             searchParameter += ("&y=" + movieYearInput.current.value);
         }
 
-        console.log("Your movie title search input: " + movieTitleInput.current.value);
-        console.log("Your movie year search input: " + movieYearInput.current.value);
-        console.log("Your overall parameter: " + searchParameter);
+        console.log(searchParameter);
 
         const axios = require('axios');
-        // const tempQueryArray: string[] = movieTitleInput.current.value.trim().split(' ');
-        // searchParameter = tempQueryArray.join('+');
+
         axios.get(`http://www.omdbapi.com/?${searchParameter}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
-            .then( (response: { data: MovieInfo; }) => setMovie(response.data));
+            .then( (response: { data: MovieInfo | ErrorInfo; }) => {
+
+                // Purge error and movie data since we're conducting a new search
+                // "Resetting the world"
+                setError("");
+                setMovie(null);
+
+                // Handle errors if there is no movie data that returns
+                if ('Error' in response.data) {
+                    return setError(response.data.Error);
+                }
+
+                // Otherwise, just return the movie data
+                return setMovie(response.data);
+            });
     };
 
     return (
@@ -117,7 +117,8 @@ const SearchMovie = () => {
             <button onClick={getMovieData}>Search</button>
 
             <div>
-                <Movie movieData={movie} />
+                {movie && <Movie movieData={movie}/>}
+                {error && <Error errorMessage={error}/>}
             </div>
         </React.Fragment>
     );

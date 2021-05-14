@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <Router>
             <div>
-                <h1>This is the main page</h1>
+                <h1>HOME PAGE TITLE PLACEHOLDER</h1>
                 <SearchMovie />
                 <div>
                     <Link to='/FirstMovie'>First Movie</Link>
