@@ -18,6 +18,10 @@ const Home = () => {
                 </div>     
             </div>
 
+            {/* TODO: A carousel/slideshow of top rated 10-20 movies? */}
+            {/* TODO: Carousels/slideshows of other movie categories beneath? */}
+
+            {/* What to do with the switch for routing? */}
             <Switch>
                 <Route path='/:movieName' children={<HandleMovieTitle />} />
             </Switch>

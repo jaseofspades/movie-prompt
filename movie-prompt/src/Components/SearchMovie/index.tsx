@@ -1,15 +1,29 @@
 import React, { useState, useRef } from 'react';
+import Movie from '../Movie';
 
-interface MovieInfo {
-    imdbID: string,
+export interface RatingInfo {
+    Source: string; 
+    Value: string;
+}
+export interface MovieInfo {
+    Actors: string,
+    Awards: string
+    BoxOffice: string
+    Director: string
+    Genre: string
+    imdbID: string
+    imdbRating: string,
+    Metascore: string,
+    Plot: string,
+    Poster: string,
+    Production: string,
+    Rated: string,
+    Ratings: RatingInfo[],
+    Released: string,
+    Runtime: string,
     Title: string,
+    Writer: string,
     Year: string,
-    Rating: string,
-};
-
-type MovieProps = {
-    searchQuery: string;
-    setSearchQuery: (query: string) => void;
 };
 
 const SearchMovie = () => {
@@ -17,52 +31,94 @@ const SearchMovie = () => {
     const [ searchQuery, setSearchQuery ] = useState('');
     
     const [ movie, setMovie ] = useState({
+        Actors: "",
+        Awards: "",
+        BoxOffice: "",
+        Director: "",
+        Genre: "",
         imdbID: "",
+        imdbRating: "",
+        Metascore: "",
+        Plot: "",
+        Poster: "",
+        Production: "",
+        Rated: "",
+        Ratings: [{Source: "", Value: ""}],
+        Released: "",
+        Runtime: "",
         Title: "",
+        Writer:"",
         Year: "",
-        Rating: ""
     });
 
     /**
-     * This var will constantly
-     * two islands: html and DOM
-     * you can keep track of this elem with useRef
-     * the html elem using this var will be bridged to the elem that
-     * references this
-     * think of it as pointer to this var
+     * Think of variables with useRef() as a pointer to their variable that 
+     * bridges the HTML element to the DOM.
      */
-    const searchInput = useRef(null);
+    const movieTitleInput = useRef<HTMLInputElement>(null);
+    const movieYearInput = useRef<HTMLInputElement>(null);
 
-    // useEffect(() => {
-    //     getMovieData();
-    // }, []);
+    let searchParameter = "";
 
     const getMovieData = () => {
 
-        const axios = require('axios');
-        // @ts-ignore
-        const tempQueryArray: string[] = searchInput.current.value.trim().split(' ');
-        const searchParameter = tempQueryArray.join('+');
-        axios.get(`http://www.omdbapi.com/?t=${searchParameter}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
-            .then( (response: { data: MovieInfo; }) => {
-                setMovie(response.data);
-            });
+        if ((movieTitleInput.current === null || movieTitleInput.current === undefined) ||  
+            (movieYearInput.current === null || movieYearInput.current === undefined))
+        {
+            return;
+        }
 
-        // todo: what should we do w/ movie data here?
+        // Build the movie title parameter for the API call
+        if (movieTitleInput.current.value) {
+            searchParameter += ("t=" + movieTitleInput.current.value.trim().split(' ').join('+'));
+            console.log(searchParameter);
+        }
+
+        // If there is a movie year parameter, add that too
+        if (movieYearInput.current.value) {
+            searchParameter += ("&y=" + movieYearInput.current.value);
+        }
+
+        console.log("Your movie title search input: " + movieTitleInput.current.value);
+        console.log("Your movie year search input: " + movieYearInput.current.value);
+        console.log("Your overall parameter: " + searchParameter);
+
+        const axios = require('axios');
+        // const tempQueryArray: string[] = movieTitleInput.current.value.trim().split(' ');
+        // searchParameter = tempQueryArray.join('+');
+        axios.get(`http://www.omdbapi.com/?${searchParameter}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
+            .then( (response: { data: MovieInfo; }) => setMovie(response.data));
     };
 
     return (
         <React.Fragment>
-            <label htmlFor='movie-search-bar'>
-                Search for movies
-            </label>
-            <input 
-                ref={searchInput}
-                type='search'
-                id='movie-search'
-                placeholder='Search for movies'
-            />
+            <div>
+                <label htmlFor='movie-title-search-bar'>
+                    Search by movie title:
+                </label>
+                <input 
+                    ref={movieTitleInput}
+                    type='search'
+                    id='movie-title-search'
+                    placeholder='Search by title'
+                />
+            </div>
+            <div>
+                <label htmlFor='movie-year-search-bar'>
+                    Search by movie year:
+                </label>
+                <input
+                    ref={movieYearInput}
+                    type='search'
+                    id='movie-year-search'
+                    placeholder='Search by year'
+                />
+            </div>
             <button onClick={getMovieData}>Search</button>
+
+            <div>
+                <Movie movieData={movie} />
+            </div>
         </React.Fragment>
     );
 };
