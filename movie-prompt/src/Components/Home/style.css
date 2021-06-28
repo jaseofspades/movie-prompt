@@ -1,0 +1,7 @@
+
+.background-img-container {
+    background-image: url('./homepageBackground.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: auto;
+}

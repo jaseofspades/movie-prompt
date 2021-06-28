@@ -1,12 +1,19 @@
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
-import Movie from '../../Components/Movie';
 import SearchMovie from '../SearchMovie';
+import MyImage from './homepageBackground.jpeg';
+
+import './style.css';
 
 const Home = () => {
 
     return (
         <Router>
+            {/**
+             * Suggestion: make a component for the background?
+             * Make it work first, then compartmentalize
+             * 
+             */}
             <div>
                 <h1>HOME PAGE TITLE PLACEHOLDER</h1>
                 <SearchMovie />

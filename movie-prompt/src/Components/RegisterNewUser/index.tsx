@@ -7,7 +7,7 @@ const RegisterNewUser = () => {
     return (
         <React.Fragment>
             <h1>This is the new user registration page</h1>
-            <form className='registrationForm'>
+            <form className='registration-form'>
                 <div>
                     <label>First name:</label> <input placeholder="First name"></input>
  
