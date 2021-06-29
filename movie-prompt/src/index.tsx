@@ -12,7 +12,6 @@ import Login from './Components/Login';
 import ForgotUsernamePassword from './Components/ForgotUsernamePassword';
 import Home from './Components/Home';
 import RegisterNewUser from './Components/RegisterNewUser';
-import Movie from './Components/Movie';
 import SearchMovie from './Components/SearchMovie';
 
 ReactDOM.render(
@@ -23,7 +22,6 @@ ReactDOM.render(
         <Route exact path='/home' component={Home} />
         <Route exact path='/forgotUsernamePassword' component={ForgotUsernamePassword} />
         <Route exact path='/register' component={RegisterNewUser} />
-        <Route exact path='/searchMovie' component={SearchMovie} />
         <Route render={() => <div>404 - NOT FOUND</div>} />
       </Switch>
     </Router>

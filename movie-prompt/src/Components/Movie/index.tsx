@@ -3,8 +3,8 @@ import { MovieInfo } from '../SearchMovie';
 
 import './style.css';
 
-const Movie = ( {movieData} : {movieData: MovieInfo} ) => {
-
+const Movie = ( { movieData } : { movieData: MovieInfo } ) => {
+    
     return (
         <React.Fragment>
             <div className='movie-text-color'>
