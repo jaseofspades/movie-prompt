@@ -2,8 +2,10 @@ import { Route, Link } from 'react-router-dom';
 
 const Login = () => {
     
+    const background = 'url(https://wallpaperaccess.com/full/2063931.jpg)';
     return (
-        <div>
+        <div background-image={background}>
+
             <h1>App Title Placeholder</h1>
             <div>
                 <input placeholder='Username' />
@@ -18,7 +20,7 @@ const Login = () => {
                 </div>
                 <div>
                     <Link to='/register'>Register</Link>
-                </div>     
+                </div>
             </Route>
 
             <button>Login</button>

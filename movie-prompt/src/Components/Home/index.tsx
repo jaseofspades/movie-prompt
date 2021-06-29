@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import SearchMovie from '../SearchMovie';
-import MyImage from './homepageBackground.jpeg';
 
 import './style.css';
 
 const Home = () => {
 
+    const imageUrl = 'https://wallpaperaccess.com/full/2063931.jpg';
     return (
         <Router>
             {/**
@@ -14,24 +14,26 @@ const Home = () => {
              * Make it work first, then compartmentalize
              * 
              */}
-            <div>
-                <h1>HOME PAGE TITLE PLACEHOLDER</h1>
-                <SearchMovie />
+            <div className='background-img-container'>
                 <div>
-                    <Link to='/FirstMovie'>First Movie</Link>
+                    <h1>HOME PAGE TITLE PLACEHOLDER</h1>
+                    <SearchMovie />
+                    <div>
+                        <Link to='/FirstMovie'>First Movie</Link>
+                    </div>
+                    <div>
+                        <Link to='/SecondMovie'>Second Movie</Link>
+                    </div>     
                 </div>
-                <div>
-                    <Link to='/SecondMovie'>Second Movie</Link>
-                </div>     
+
+                {/* TODO: A carousel/slideshow of top rated 10-20 movies? */}
+                {/* TODO: Carousels/slideshows of other movie categories beneath? */}
+
+                {/* What to do with the switch for routing? */}
+                <Switch>
+                    <Route path='/:movieName' children={<HandleMovieTitle />} />
+                </Switch>
             </div>
-
-            {/* TODO: A carousel/slideshow of top rated 10-20 movies? */}
-            {/* TODO: Carousels/slideshows of other movie categories beneath? */}
-
-            {/* What to do with the switch for routing? */}
-            <Switch>
-                <Route path='/:movieName' children={<HandleMovieTitle />} />
-            </Switch>
         </Router>
     );
 };
