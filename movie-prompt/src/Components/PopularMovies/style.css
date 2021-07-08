@@ -1,0 +1,137 @@
+
+/* Movie */
+.movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color:aqua;
+    height: 300px;
+    width: 200px;
+    position: relative;
+}
+
+.movie .like-button {
+    border: 0;
+    background-color: greenyellow;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    box-shadow: 0 6px #999;
+    border-radius: 4px;
+}
+
+.movie .movie-poster {
+    position: absolute;
+    width: 100%;
+}
+
+.movie-poster{
+    width: 100%;
+}
+
+/* 
+    .movie - ID's which specific class the modifications apply to
+    button - ID's what element is to be modified
+    .like-button - Your custom class
+    :hover - Pseudo-class that specifies what behavior invokes these properties
+*/
+.movie button.like-button:hover {
+    background-color: green;
+    color: white;
+}
+
+.movie button.like-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
+}
+
+.movie button.plus-button {
+    background-color: transparent;
+    z-index: 15;
+    display: flex;
+    flex-direction: row-reverse;
+    cursor: pointer;
+    border: 0;
+    padding-right: 4px;
+}
+
+.movie button.plus-button:active {
+    transform: translateY(2px);
+}
+
+.movie .button-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    z-index: 10;
+    justify-content: space-evenly;
+}
+
+.movies-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+}
+
+/* Ratings */
+.rating-buttons-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 4px;
+}
+
+.rating-fieldset {
+    border: 2;
+}
+
+.rating-buttons {
+    justify-content:space-between;
+}
+
+.rating-legend {
+    background-color: black;
+    font-size: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.star-rating {
+
+}
+
+
+/* Search */
+.search-container {
+    background-color: green;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.search-bar {
+    padding-left: 10px;
+    padding-right: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    border: 0;
+}
+
+.popular-movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.emoji-add-favorite-button {
+    z-index: 100;   
+}

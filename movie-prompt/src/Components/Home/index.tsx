@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import SearchMovie from '../SearchMovie';
+import PopularMovies from '../PopularMovies';
 
 import './style.css';
 
@@ -14,10 +15,12 @@ const Home = () => {
              * Make it work first, then compartmentalize
              * 
              */}
+
             <div className='background-img-container'>
-                <div>
+                <div className="home-page">
                     <h1>HOME PAGE TITLE PLACEHOLDER</h1>
                     <SearchMovie />
+                    <PopularMovies />
                     <div>
                         <Link to='/FirstMovie'>First Movie</Link>
                     </div>

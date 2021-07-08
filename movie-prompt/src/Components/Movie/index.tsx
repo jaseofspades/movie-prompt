@@ -7,9 +7,13 @@ const Movie = ( { movieData } : { movieData: MovieInfo } ) => {
     
     return (
         <React.Fragment>
-            <div className='movie-text-color'>
+            <div>
                 <h1>{movieData.Title} ({movieData.Year})</h1>
-                <img src={movieData.Poster} alt={movieData.Title} />
+                
+                <div>
+                    <img src={movieData.Poster} alt={movieData.Title} />
+                </div>
+
                 <h2>Directed by {movieData.Director}</h2>
                 <h3>{movieData.Rated} - {movieData.Runtime}</h3>
                 <h3>{ movieData.Ratings.map( movieRating => 

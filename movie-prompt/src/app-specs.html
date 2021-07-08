@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            color: white;
+        }
+
+        /* dot notation signifies class */
+        .search-container {
+            background-color: green;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .search-bar {
+            padding-left: 10px;
+            padding-right: 200px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 4px;
+            border: 0;
+        }
+
+        .movies-container {
+            background-color: blue;
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .movie {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color:aqua;
+            height: 300px;
+            width: 200px;
+        }
+
+        .movie .like-button {
+            border: 0;
+            background-color: greenyellow;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            box-shadow: 0 6px #999;
+            border-radius: 4px;
+            
+        }
+
+        /* 
+            .movie - ID's which specific class the modifications apply to
+            button - ID's what element is to be modified
+            .like-button - Your custom class
+            :hover - Pseudo-class that specifies what behavior invokes these properties
+        */
+        .movie button.like-button:hover {
+            background-color: green;
+            color: white;
+        }
+
+        .movie button.like-button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 3px #666;
+            transform: translateY(3px);
+        }
+
+        .movie .button-section {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+
+        .rating-buttons-container {
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input class="search-bar" type="search" placeholder="Search here"/>
+    </div>
+
+    <div class="movies-container">
+        <div class="movie">
+            <div>
+                Movie1
+            </div>
+            <div class="button-section">
+
+                <button class="like-button">Add to favorites</button>
+
+                <div class="rating-buttons-container">
+                    <input type="radio" id="rating-1" />
+                    <input type="radio" id="rating-2" />
+                    <input type="radio" id="rating-3" />
+                    <input type="radio" id="rating-4" />
+                    <input type="radio" id="rating-5" />
+                </div>
+            </div>
+        </div>
+
+        <div class="movie">Movie2</div>
+        <div class="movie">Movie3</div>
+        <div class="movie">Movie4</div>
+        <div class="movie">Movie5</div>
+    </div>
+
+</body>
+</html>

@@ -67,9 +67,7 @@ const SearchMovie = () => {
         if (movieYearInput.current.value) {
             searchParameter += ("&y=" + movieYearInput.current.value);
         }
-
-        console.log(searchParameter);
-
+        
         /* 
             Axios is just a 3rd party lib to make HTTP requests
         */
@@ -125,6 +123,11 @@ const SearchMovie = () => {
                     placeholder='Search by year'
                 />
             </div>
+
+            <section>
+                
+            </section>
+
             <button onClick={getMovieData}>Search</button>
 
             <div>
@@ -138,12 +141,12 @@ const SearchMovie = () => {
 export default SearchMovie;
 
 /**
- * () => setterFromHook(param) if you want to uase paramas
+ * () => setterFromHook(param) if you want to use paramas
  */
 
 /**
  * todo list
- * - disdplau movie data on page
- * - ckleamn up the code
- * -    replacing the way we parse the str query for best prac
+ * - display movie data on page
+ * - clean up the code
+ * -    replacing the way we parse the str query for best practice
  */
