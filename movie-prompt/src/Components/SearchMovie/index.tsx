@@ -92,27 +92,17 @@ const SearchMovie = () => {
 
     return (
         <React.Fragment>
-            <div>
-                {/* class, for ex, is a reserved HTML property 
-                    it's a way to identify HTML items on the page
-                    in React, it's className;
-                    htmlFor is also a reserved word for HTML 
-                    
-                    This can also work as accessibility feature;
-                    so when we have a label for an item on the page,
-                    it's good practice to make sure they're assoc'd together
-                    */}
+            <section className="search-bar">
                 <label htmlFor='movie-title-search'>
                     Search by movie title:
                 </label>
+
                 <input 
                     ref={movieTitleInput}
                     type='search'
                     id='movie-title-search'
                     placeholder='Search by title'
                 />
-            </div>
-            <div>
                 <label htmlFor='movie-year-search'>
                     Search by movie year:
                 </label>
@@ -122,10 +112,7 @@ const SearchMovie = () => {
                     id='movie-year-search'
                     placeholder='Search by year'
                 />
-            </div>
 
-            <section>
-                
             </section>
 
             <button onClick={getMovieData}>Search</button>
