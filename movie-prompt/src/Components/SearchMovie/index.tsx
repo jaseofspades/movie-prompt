@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Movie from '../Movie';
 import Error from '../Error';
+import { SearchSection, BiggerSearchSection } from './style';
 
 export interface RatingInfo {
     Source: string; 
@@ -38,7 +39,6 @@ const SearchMovie = () => {
     // We use null here as a potential type to handle since we may not have
     // a starting movie object and don't want to display anything until there is
     const [ movie, setMovie ] = useState<MovieInfo | null>(null);
-    
     const [ error, setError ] = useState("");
 
     /**
@@ -92,7 +92,7 @@ const SearchMovie = () => {
 
     return (
         <React.Fragment>
-            <section className="search-bar">
+            <BiggerSearchSection>
                 <label htmlFor='movie-title-search'>
                     Search by movie title:
                 </label>
@@ -112,8 +112,7 @@ const SearchMovie = () => {
                     id='movie-year-search'
                     placeholder='Search by year'
                 />
-
-            </section>
+            </BiggerSearchSection>
 
             <button onClick={getMovieData}>Search</button>
 
@@ -129,11 +128,4 @@ export default SearchMovie;
 
 /**
  * () => setterFromHook(param) if you want to use paramas
- */
-
-/**
- * todo list
- * - display movie data on page
- * - clean up the code
- * -    replacing the way we parse the str query for best practice
  */

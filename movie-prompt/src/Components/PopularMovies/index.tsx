@@ -18,11 +18,15 @@ const PopularMovies = () => {
     const [ error, setError ] = useState("");
 
     /**
+     * This function goes through pre-set movies movieArray and
+     * returns an array of API response for each movie.
      * 
      * @returns Promise<AxiosResponse<MovieInfo>>[]
      */
     const getMoviePromises = (): Promise<AxiosResponse<MovieInfo>>[] => {
         
+        // Since map() returns a copy of an array with each item modified,
+        // this return statement is for returning that copy
         return movieArray.map( movieItem => {
 
             let movieTitle = movieItem.movie[0];
@@ -37,6 +41,7 @@ const PopularMovies = () => {
 
             query = "t=" + movieTitle;
             
+            // Think of this step as replacing each mapped array item with API response
             return axios.get(`http://www.omdbapi.com/?${query}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`);
         });
     }
@@ -48,6 +53,7 @@ const PopularMovies = () => {
 
         const moviePromises = getMoviePromises();
 
+        // Fulfills promise after all API calls from getMoviePromises() are done
         Promise.all(moviePromises).then( (movieResponses) => {
 
             const movieResponseList = movieResponses.map((movieResponse) => {
@@ -60,7 +66,20 @@ const PopularMovies = () => {
 
 
     /* useEffect will render something once, as long as you have
-        an empty array as second parameter*/
+        an empty array as second parameter
+        
+        will re-run the entire component every time that the state changes on said component
+        
+        if you throw in params into the [], it will only re-run if specified variables change in state
+
+        without useEffect(), the entire component re-renders anytime anything changes, so this makes sure we only re-run once as long as we have []
+
+        when the component mounts (first time it renders), everything runs inclduing stuff inside useEffect()
+        but when any updates occur after the initial mount, then stuff outside useEffect() re-runs again
+
+        in work terms, if you hit an endpoint you only want to hit it once--not every time updates occur in the component!
+
+        */
     useEffect(() => {
         getMovies();
     }, []);
